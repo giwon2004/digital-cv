@@ -61,6 +61,7 @@
             align-items: center;
             gap: 6px;
             box-shadow: 0 2px 4px rgba(15, 76, 129, 0.2);
+            z-index: 10;
         }
 
         .cv-btn:hover {
@@ -125,6 +126,10 @@
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             color: var(--text-muted);
             box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+            /* Prevent text selection when tapping rapidly on mobile */
+            -webkit-user-select: none;
+            user-select: none;
+            -webkit-tap-highlight-color: transparent; 
         }
 
         .circle-code {
@@ -139,12 +144,24 @@
             letter-spacing: 0.5px;
         }
 
-        .circle:hover, .circle.active {
+        /* Active State */
+        .circle.active {
             border-color: var(--highlight);
             background-color: var(--highlight-light);
             color: var(--highlight);
             transform: translateY(-4px);
             box-shadow: 0 8px 15px rgba(15, 76, 129, 0.15);
+        }
+
+        /* Desktop Only Hover State */
+        @media (hover: hover) {
+            .circle:hover {
+                border-color: var(--highlight);
+                background-color: var(--highlight-light);
+                color: var(--highlight);
+                transform: translateY(-4px);
+                box-shadow: 0 8px 15px rgba(15, 76, 129, 0.15);
+            }
         }
 
         /* Main Container */
@@ -243,6 +260,7 @@
                 justify-content: center;
                 margin-bottom: 15px;
                 width: max-content;
+                align-self: center;
             }
             header {
                 display: flex;
@@ -339,6 +357,7 @@
                     <span class="date">2023</span>
                 </div>
                 <p class="subtitle">High School Diploma</p>
+                <p><strong>Core courses:</strong> Differential Equations, Algorithms, Discrete Mathematics</p>
             </div>
 
             <!-- Research Panel -->
@@ -447,16 +466,28 @@
         const circles = document.querySelectorAll('.circle');
         const panels = document.querySelectorAll('.stage-panel');
 
+        // Function to handle the activation of a panel
+        function activateSection(circle) {
+            // Clear active states
+            circles.forEach(c => c.classList.remove('active'));
+            panels.forEach(p => p.classList.remove('active'));
+            
+            // Activate the hovered/clicked item
+            circle.classList.add('active');
+            const targetId = circle.getAttribute('data-target');
+            document.getElementById(targetId).classList.add('active');
+        }
+
+        // Attach BOTH hover and click event listeners
         circles.forEach(circle => {
+            // Desktop hover interaction
             circle.addEventListener('mouseenter', () => {
-                // Clear active states
-                circles.forEach(c => c.classList.remove('active'));
-                panels.forEach(p => p.classList.remove('active'));
-                
-                // Activate the hovered item
-                circle.classList.add('active');
-                const targetId = circle.getAttribute('data-target');
-                document.getElementById(targetId).classList.add('active');
+                activateSection(circle);
+            });
+            
+            // Mobile tap/click interaction
+            circle.addEventListener('click', () => {
+                activateSection(circle);
             });
         });
     </script>
