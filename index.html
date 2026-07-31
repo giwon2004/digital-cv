@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giwon Song - Digital CV</title>
+    <style>
+        :root {
+            --primary-color: #0F4C81;
+            --text-color: #333333;
+            --bg-color: #ffffff;
+            --section-bg: #f8f9fa;
+            --border-color: #e9ecef;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        header {
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        h1 {
+            margin: 0 0 10px 0;
+            font-size: 2.5rem;
+            color: var(--primary-color);
+        }
+
+        .contact-info a {
+            color: var(--primary-color);
+            text-decoration: none;
+            margin: 0 10px;
+        }
+
+        .contact-info a:hover {
+            text-decoration: underline;
+        }
+
+        details {
+            background-color: var(--section-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            margin-bottom: 15px;
+            overflow: hidden;
+        }
+
+        summary {
+            font-size: 1.25rem;
+            font-weight: 600;
+            padding: 15px 20px;
+            cursor: pointer;
+            background-color: var(--section-bg);
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        summary::-webkit-details-marker {
+            display: none;
+        }
+
+        summary::after {
+            content: '+';
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            transition: transform 0.2s ease;
+        }
+
+        details[open] summary::after {
+            content: '−';
+        }
+
+        details[open] summary {
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .content {
+            padding: 20px;
+        }
+
+        .item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 5px;
+        }
+
+        h3 {
+            margin: 0;
+            color: var(--primary-color);
+            font-size: 1.1rem;
+        }
+
+        .date {
+            font-size: 0.9rem;
+            color: #666;
+            font-style: italic;
+        }
+
+        .subtitle {
+            font-weight: 500;
+            margin: 0 0 10px 0;
+        }
+
+        ul {
+            margin: 0;
+            padding-left: 20px;
+        }
+
+        li {
+            margin-bottom: 5px;
+        }
+
+        .skill-category {
+            margin-bottom: 15px;
+        }
+
+        .publication {
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>GIWON SONG</h1>
+        <div class="contact-info">
+            <a href="mailto:eceg123@snu.ac.kr">eceg123@snu.ac.kr</a> | 
+            <span>(+82) 10-8941-1574</span> | 
+            <a href="https://github.com/giwon2004" target="_blank">github.com/giwon2004</a><br>
+            <span>Seoul, South Korea</span>
+        </div>
+    </header>
+
+    <main>
+        <!-- Education Section -->
+        <details>
+            <summary>Education</summary>
+            <div class="content">
+                <div class="item-header">
+                    <h3>Seoul National University</h3>
+                    <span class="date">2029</span>
+                </div>
+                <p class="subtitle">Bachelor of Science in Electronic and Computer Engineering</p>
+                <p><strong>Core courses:</strong> Programming Methodology, Digital Logic Design and Lab., Introduction to Quantum Computing (CSE)</p>
+                <hr style="border: 0; border-top: 1px solid var(--border-color); margin: 15px 0;">
+                <div class="item-header">
+                    <h3>Korea Science Academy of KAIST (KSA)</h3>
+                    <span class="date">2023</span>
+                </div>
+                <p class="subtitle">High School Diploma</p>
+                <p><strong>Core courses:</strong> Differential Equations, Algorithms, Discrete Mathematics</p>
+            </div>
+        </details>
+
+        <!-- Research Experience Section -->
+        <details>
+            <summary>Research Experience</summary>
+            <div class="content">
+                <div class="item-header">
+                    <h3>Quantum Information and Quantum Computer Lab (QuIQCL), Seoul National University</h3>
+                    <span class="date">July 2024 – Apr 2025</span>
+                </div>
+                <p class="subtitle">Undergraduate Research Intern</p>
+                <ul>
+                    <li>Conducted research on the theoretical limits of quantum computing and algorithmic efficiency.</li>
+                    <li>Focused on the classical simulation of quantum circuits utilizing the Extended Stabilizer Simulation framework.</li>
+                    <li>Collaborated with a senior researcher to design and optimize computational models for state vector mathematics.</li>
+                </ul>
+                
+                <div class="item-header" style="margin-top: 15px;">
+                    <h3>QuIQCL, Seoul National University</h3>
+                    <span class="date">July 2023 – Aug 2023</span>
+                </div>
+                <p class="subtitle">Undergraduate Research Program (URP) Participant</p>
+                <ul>
+                    <li>Co-developed IQUIP (Ion trap Quantum computing User Interface Project), an interface and control software system for a laser projection setup within a vacuum chamber, facilitating precise hardware manipulation of an ion-trap quantum computer.</li>
+                    <li>Project Repository: <a href="https://github.com/snu-quiqcl/iquip" target="_blank">github.com/snu-quiqcl/iquip</a></li>
+                </ul>
+
+                <hr style="border: 0; border-top: 1px solid var(--border-color); margin: 15px 0;">
+
+                <div class="item-header">
+                    <h3>Korea Science Academy of KAIST (KSA)</h3>
+                    <span class="date">2021</span>
+                </div>
+                <p class="subtitle">Student Researcher</p>
+                <ul>
+                    <li>Researched advanced implementations of Neural Radiance Fields (NeRF) for 3D scene representation and novel view synthesis.</li>
+                    <li>Co-authored a formal research paper detailing the architectural improvements to the baseline NeRF model.</li>
+                </ul>
+            </div>
+        </details>
+
+        <!-- Military Service Section -->
+        <details>
+            <summary>Military Service</summary>
+            <div class="content">
+                <div class="item-header">
+                    <h3>Republic of Korea Army (ROKA)</h3>
+                    <span class="date">May 2025 – Nov 2026</span>
+                </div>
+                <p class="subtitle">Technical Specialist & Cryptanalyst</p>
+                <ul>
+                    <li>Performed rigorous cryptanalysis and decrypted complex ciphers, applying advanced mathematical and algorithmic problem-solving techniques.</li>
+                    <li>Designed and delivered technical seminars on quantum computing fundamentals and quantum algorithms to military personnel, bridging advanced theoretical physics with accessible education.</li>
+                </ul>
+            </div>
+        </details>
+
+        <!-- Publications & Presentations Section -->
+        <details>
+            <summary>Publications & Presentations</summary>
+            <div class="content">
+                <h3>Manuscript in Preparation</h3>
+                <div class="publication">
+                    <p>Hwang, Y.*, <strong>Song, G.*</strong>, Park, K., Kwon, H.†, Kim, T.† "<em>Efficient expectation value estimation for quantum circuits via extended stabilizer frameworks and adaptive variance estimation</em>" (Manuscript in preparation).</p>
+                </div>
+
+                <h3>Publications</h3>
+                <div class="publication">
+                    <p>Park, K., Choi, K., Kim, M., <strong>Song, G.</strong>, Kim, T.† "<em>Quantum Linear Multistep Method for Using a Quantum Oracle with Differential Equations.</em>" ArXiv preprint, 2025. <a href="https://arxiv.org/abs/2501.03781" target="_blank">ArXiv:2501.03781</a></p>
+                </div>
+                <div class="publication">
+                    <p>Kim, B.*, <strong>Song, G.*</strong>, Cho, Y.*, Min, D., Kim, M., Hwang, S.† "<em>MultiNeRF: Neural Radiance Field for Multiple Objects.</em>" KSAReD, 2021. <br>Project Page: <a href="https://giwon2004.github.io/multinerf/" target="_blank">giwon2004.github.io/multinerf/</a></p>
+                </div>
+                <p style="font-size: 0.85em; color: #666;">*These authors contributed equally to this work. †Corresponding author(s).</p>
+
+                <h3 style="margin-top: 20px;">Conference Presentations</h3>
+                <div class="publication">
+                    <p><strong>Presenter</strong>, "<em>Development of a Space-Efficient Quantum Circuit Simulator Optimized for Expectation Value Calculation.</em>" 2025 Quantum Information Society of Korea (QISK) Annual Conference, Busan, South Korea.</p>
+                </div>
+            </div>
+        </details>
+
+        <!-- Awards & Honors Section -->
+        <details>
+            <summary>Awards & Honors</summary>
+            <div class="content">
+                <ul>
+                    <li><strong>Academic Excellence Scholarship (Merit-based)</strong> | Seoul National University | 2023 – 2024</li>
+                    <li><strong>Special Prize (IBM Quantum)</strong> | Korea Q Hackathon | 2024</li>
+                    <li><strong>Advanced Badge (Completed all exercises)</strong> | IBM Quantum Spring Challenge | 2024 <a href="http://credly.com/badges/b2f7edca-e091-4fda-8cf8-9ea219084ba4/public-url" target="_blank">[Credential]</a></li>
+                    <li><strong>Director's Award, Quantum Information Research Support Center</strong> | Korea Q Hackathon | 2023</li>
+                    <li><strong>Silver Prize</strong> | Korea Olympiad in Informatics (KOI) | 2016</li>
+                </ul>
+            </div>
+        </details>
+
+        <!-- Technical Skills Section -->
+        <details>
+            <summary>Technical Skills & Languages</summary>
+            <div class="content">
+                <div class="skill-category">
+                    <h3>Programming & Tools</h3>
+                    <p>C++, Python, Qiskit, LaTeX, Git</p>
+                </div>
+                <div class="skill-category">
+                    <h3>Research Areas</h3>
+                    <p>Quantum Algorithms, Classical Simulation, Extended Stabilizer Framework, Computational Complexity</p>
+                </div>
+                <div class="skill-category">
+                    <h3>Languages</h3>
+                    <p><strong>Korean:</strong> Native<br>
+                    <strong>English:</strong> Professional Working Proficiency (iBT TOEFL: 110/120)<br>
+                    <strong>Japanese:</strong> Professional Working Proficiency (JLPT N2: 165/180 | JLPT N1: Results Expected Aug 2026)</p>
+                </div>
+            </div>
+        </details>
+    </main>
+
+</body>
+</html>
