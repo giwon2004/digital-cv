@@ -6,85 +6,191 @@
     <title>Giwon Song - Digital CV</title>
     <style>
         :root {
-            --primary-color: #0F4C81;
-            --text-color: #333333;
-            --bg-color: #ffffff;
-            --section-bg: #f8f9fa;
-            --border-color: #e9ecef;
+            --bg-color: #f8fafc;
+            --surface-color: #ffffff;
+            --text-main: #334155;
+            --text-muted: #64748b;
+            --border-color: #e2e8f0;
+            --highlight: #0F4C81; 
+            --highlight-light: rgba(15, 76, 129, 0.08);
         }
         
+        /* Box-sizing reset */
+        html {
+            box-sizing: border-box;
+        }
+        *, *:before, *:after {
+            box-sizing: inherit;
+        }
+
+        /* Lock the body to the viewport */
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: var(--bg-color);
+        }
+
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             line-height: 1.6;
-            color: var(--text-color);
-            background-color: var(--bg-color);
-            max-width: 800px;
+            color: var(--text-main);
+            max-width: 900px;
             margin: 0 auto;
-            padding: 40px 20px;
+            display: flex;
+            flex-direction: column;
+            padding: 3vh 20px;
+            position: relative;
         }
 
+        /* Paper CV Button */
+        .cv-btn {
+            position: absolute;
+            top: 3vh;
+            right: 20px;
+            background-color: var(--highlight);
+            color: #ffffff;
+            padding: 8px 16px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            box-shadow: 0 2px 4px rgba(15, 76, 129, 0.2);
+        }
+
+        .cv-btn:hover {
+            background-color: #0a365c;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(15, 76, 129, 0.3);
+            color: #ffffff;
+        }
+
+        /* Header / Contact */
         header {
-            margin-bottom: 40px;
             text-align: center;
+            margin-bottom: 30px;
+            flex-shrink: 0;
         }
 
         h1 {
-            margin: 0 0 10px 0;
+            margin: 0 0 5px 0;
             font-size: 2.5rem;
-            color: var(--primary-color);
+            font-weight: 700;
+            color: var(--text-main);
+            letter-spacing: -0.5px;
+        }
+
+        .contact-info {
+            color: var(--text-muted);
+            font-size: 0.95rem;
         }
 
         .contact-info a {
-            color: var(--primary-color);
+            color: var(--highlight);
             text-decoration: none;
-            margin: 0 10px;
+            margin: 0 8px;
+            font-weight: 500;
         }
 
         .contact-info a:hover {
             text-decoration: underline;
         }
 
-        details {
-            background-color: var(--section-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 6px;
-            margin-bottom: 15px;
-            overflow: hidden;
-        }
-
-        summary {
-            font-size: 1.25rem;
-            font-weight: 600;
-            padding: 15px 20px;
-            cursor: pointer;
-            background-color: var(--section-bg);
-            list-style: none;
+        /* Circular Navigation */
+        .nav-circles {
             display: flex;
-            justify-content: space-between;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-bottom: 25px;
+            flex-shrink: 0;
+        }
+
+        .circle {
+            width: 110px;
+            height: 110px;
+            border-radius: 50%;
+            background-color: var(--surface-color);
+            border: 2px solid var(--border-color);
+            display: flex;
+            flex-direction: column;
             align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            color: var(--text-muted);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.02);
         }
 
-        summary::-webkit-details-marker {
+        .circle-code {
+            font-size: 2rem; 
+            margin-bottom: 5px;
+        }
+
+        .circle-label {
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .circle:hover, .circle.active {
+            border-color: var(--highlight);
+            background-color: var(--highlight-light);
+            color: var(--highlight);
+            transform: translateY(-4px);
+            box-shadow: 0 8px 15px rgba(15, 76, 129, 0.15);
+        }
+
+        /* Main Container */
+        main {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+            min-height: 0; 
+        }
+
+        /* Content Stage */
+        .content-stage {
+            background: var(--surface-color);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            flex: 1; 
+            overflow-y: auto; 
+            padding: 40px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+            position: relative;
+        }
+
+        /* Custom Scrollbar */
+        .content-stage::-webkit-scrollbar { width: 8px; }
+        .content-stage::-webkit-scrollbar-track { background: transparent; margin: 10px 0; }
+        .content-stage::-webkit-scrollbar-thumb { background-color: var(--border-color); border-radius: 10px; }
+        .content-stage::-webkit-scrollbar-thumb:hover { background-color: var(--highlight); }
+
+        .stage-panel {
             display: none;
+            opacity: 0;
         }
 
-        summary::after {
-            content: '+';
+        .stage-panel.active {
+            display: block;
+            animation: fadeIn 0.4s ease-out forwards;
+        }
+
+        /* Internal Panel Formatting */
+        .panel-title {
+            color: var(--highlight);
             font-size: 1.5rem;
-            color: var(--primary-color);
-            transition: transform 0.2s ease;
-        }
-
-        details[open] summary::after {
-            content: '−';
-        }
-
-        details[open] summary {
-            border-bottom: 1px solid var(--border-color);
-        }
-
-        .content {
-            padding: 20px;
+            border-bottom: 2px solid var(--highlight-light);
+            padding-bottom: 10px;
+            margin-top: 0;
+            margin-bottom: 25px;
         }
 
         .item-header {
@@ -96,40 +202,83 @@
 
         h3 {
             margin: 0;
-            color: var(--primary-color);
-            font-size: 1.1rem;
+            color: var(--text-main);
+            font-size: 1.15rem; 
+            font-weight: 700;
         }
 
         .date {
             font-size: 0.9rem;
-            color: #666;
-            font-style: italic;
+            color: var(--text-muted);
+            font-family: monospace;
         }
 
         .subtitle {
-            font-weight: 500;
+            font-weight: 600;
+            color: var(--highlight);
             margin: 0 0 10px 0;
+            font-size: 0.95rem;
         }
 
-        ul {
-            margin: 0;
-            padding-left: 20px;
+        ul { margin: 0; padding-left: 20px; }
+        li { margin-bottom: 8px; color: var(--text-main); }
+        
+        .separator {
+            height: 1px;
+            background: var(--border-color);
+            margin: 25px 0;
+            border: none;
         }
 
-        li {
-            margin-bottom: 5px;
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
-        .skill-category {
-            margin-bottom: 15px;
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .cv-btn {
+                position: static;
+                display: inline-flex;
+                justify-content: center;
+                margin-bottom: 15px;
+                width: max-content;
+            }
+            header {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                margin-bottom: 20px;
+            }
+            h1 { font-size: 2rem; }
+            .nav-circles { gap: 12px; margin-bottom: 20px; }
+            .circle { width: 85px; height: 85px; }
+            .circle-code { font-size: 1.6rem; }
+            .circle-label { font-size: 0.75rem; }
+            .content-stage { padding: 25px; }
+            .item-header { flex-direction: column; align-items: flex-start; }
+            .date { margin-top: 2px; margin-bottom: 5px; }
         }
 
-        .publication {
-            margin-bottom: 15px;
+        @media (max-height: 700px) {
+            body { padding: 2vh 15px; }
+            header { margin-bottom: 15px; }
+            h1 { font-size: 1.75rem; }
+            .nav-circles { gap: 10px; margin-bottom: 15px; }
+            .circle { width: 75px; height: 75px; }
+            .circle-code { font-size: 1.4rem; }
+            .circle-label { font-size: 0.65rem; }
+            .content-stage { padding: 20px; }
+            .cv-btn { top: 2vh; }
         }
     </style>
 </head>
 <body>
+
+    <!-- Link this href to your actual PDF file in the repository -->
+    <a href="Giwon_Song_CV.pdf" target="_blank" class="cv-btn">
+        📄 View Paper CV
+    </a>
 
     <header>
         <h1>GIWON SONG</h1>
@@ -137,22 +286,54 @@
             <a href="mailto:eceg123@snu.ac.kr">eceg123@snu.ac.kr</a> | 
             <span>(+82) 10-8941-1574</span> | 
             <a href="https://github.com/giwon2004" target="_blank">github.com/giwon2004</a><br>
-            <span>Seoul, South Korea</span>
+            <span style="margin-top: 8px; display: inline-block;">Seoul, South Korea</span>
         </div>
     </header>
 
     <main>
-        <!-- Education Section -->
-        <details>
-            <summary>Education</summary>
-            <div class="content">
+        <!-- Circular Interface (Education pre-selected) -->
+        <div class="nav-circles">
+            <div class="circle active" data-target="edu">
+                <span class="circle-code">🎓</span>
+                <span class="circle-label">Education</span>
+            </div>
+            <div class="circle" data-target="rsch">
+                <span class="circle-code">🔬</span>
+                <span class="circle-label">Research</span>
+            </div>
+            <div class="circle" data-target="mil">
+                <span class="circle-code">🛡️</span>
+                <span class="circle-label">Military</span>
+            </div>
+            <div class="circle" data-target="pub">
+                <span class="circle-code">📚</span>
+                <span class="circle-label">Pubs</span>
+            </div>
+            <div class="circle" data-target="awd">
+                <span class="circle-code">🏆</span>
+                <span class="circle-label">Awards</span>
+            </div>
+            <div class="circle" data-target="skl">
+                <span class="circle-code">💻</span>
+                <span class="circle-label">Skills</span>
+            </div>
+        </div>
+
+        <!-- Central Display Stage -->
+        <div class="content-stage">
+
+            <!-- Education Panel -->
+            <div id="edu" class="stage-panel active">
+                <h2 class="panel-title">Education</h2>
                 <div class="item-header">
                     <h3>Seoul National University</h3>
                     <span class="date">2029</span>
                 </div>
                 <p class="subtitle">Bachelor of Science in Electronic and Computer Engineering</p>
                 <p><strong>Core courses:</strong> Programming Methodology, Digital Logic Design and Lab., Introduction to Quantum Computing (CSE)</p>
-                <hr style="border: 0; border-top: 1px solid var(--border-color); margin: 15px 0;">
+                
+                <hr class="separator">
+                
                 <div class="item-header">
                     <h3>Korea Science Academy of KAIST (KSA)</h3>
                     <span class="date">2023</span>
@@ -160,34 +341,35 @@
                 <p class="subtitle">High School Diploma</p>
                 <p><strong>Core courses:</strong> Differential Equations, Algorithms, Discrete Mathematics</p>
             </div>
-        </details>
 
-        <!-- Research Experience Section -->
-        <details>
-            <summary>Research Experience</summary>
-            <div class="content">
-                <div class="item-header">
-                    <h3>Quantum Information and Quantum Computer Lab (QuIQCL), Seoul National University</h3>
-                    <span class="date">July 2024 – Apr 2025</span>
-                </div>
-                <p class="subtitle">Undergraduate Research Intern</p>
-                <ul>
-                    <li>Conducted research on the theoretical limits of quantum computing and algorithmic efficiency.</li>
-                    <li>Focused on the classical simulation of quantum circuits utilizing the Extended Stabilizer Simulation framework.</li>
-                    <li>Collaborated with a senior researcher to design and optimize computational models for state vector mathematics.</li>
-                </ul>
+            <!-- Research Panel -->
+            <div id="rsch" class="stage-panel">
+                <h2 class="panel-title">Research Experience</h2>
                 
-                <div class="item-header" style="margin-top: 15px;">
-                    <h3>QuIQCL, Seoul National University</h3>
-                    <span class="date">July 2023 – Aug 2023</span>
-                </div>
-                <p class="subtitle">Undergraduate Research Program (URP) Participant</p>
-                <ul>
-                    <li>Co-developed IQUIP (Ion trap Quantum computing User Interface Project), an interface and control software system for a laser projection setup within a vacuum chamber, facilitating precise hardware manipulation of an ion-trap quantum computer.</li>
-                    <li>Project Repository: <a href="https://github.com/snu-quiqcl/iquip" target="_blank">github.com/snu-quiqcl/iquip</a></li>
-                </ul>
+                <h3 style="margin-bottom: 15px;">Quantum Information and Quantum Computer Lab (QuIQCL), Seoul National University</h3>
+                
+                <div style="margin-left: 15px; border-left: 2px solid var(--border-color); padding-left: 15px; margin-bottom: 25px;">
+                    <div class="item-header">
+                        <span class="subtitle" style="margin: 0; font-size: 1.05rem;">Undergraduate Research Intern</span>
+                        <span class="date">July 2024 – Apr 2025</span>
+                    </div>
+                    <ul style="margin-bottom: 20px;">
+                        <li>Conducted research on the theoretical limits of quantum computing and algorithmic efficiency.</li>
+                        <li>Focused on the classical simulation of quantum circuits utilizing the Extended Stabilizer Simulation framework.</li>
+                        <li>Collaborated with a senior researcher to design and optimize computational models for state vector mathematics.</li>
+                    </ul>
 
-                <hr style="border: 0; border-top: 1px solid var(--border-color); margin: 15px 0;">
+                    <div class="item-header">
+                        <span class="subtitle" style="margin: 0; font-size: 1.05rem;">Undergraduate Research Program (URP) Participant</span>
+                        <span class="date">July 2023 – Aug 2023</span>
+                    </div>
+                    <ul>
+                        <li>Co-developed IQUIP (Ion trap Quantum computing User Interface Project), an interface and control software system for a laser projection setup within a vacuum chamber, facilitating precise hardware manipulation of an ion-trap quantum computer.</li>
+                        <li>Project Repository: <a href="https://github.com/snu-quiqcl/iquip" target="_blank">https://github.com/snu-quiqcl/iquip</a></li>
+                    </ul>
+                </div>
+                
+                <hr class="separator">
 
                 <div class="item-header">
                     <h3>Korea Science Academy of KAIST (KSA)</h3>
@@ -199,12 +381,10 @@
                     <li>Co-authored a formal research paper detailing the architectural improvements to the baseline NeRF model.</li>
                 </ul>
             </div>
-        </details>
 
-        <!-- Military Service Section -->
-        <details>
-            <summary>Military Service</summary>
-            <div class="content">
+            <!-- Military Panel -->
+            <div id="mil" class="stage-panel">
+                <h2 class="panel-title">Military Service</h2>
                 <div class="item-header">
                     <h3>Republic of Korea Army (ROKA)</h3>
                     <span class="date">May 2025 – Nov 2026</span>
@@ -215,68 +395,71 @@
                     <li>Designed and delivered technical seminars on quantum computing fundamentals and quantum algorithms to military personnel, bridging advanced theoretical physics with accessible education.</li>
                 </ul>
             </div>
-        </details>
 
-        <!-- Publications & Presentations Section -->
-        <details>
-            <summary>Publications & Presentations</summary>
-            <div class="content">
+            <!-- Publications Panel -->
+            <div id="pub" class="stage-panel">
+                <h2 class="panel-title">Publications & Presentations</h2>
+                
                 <h3>Manuscript in Preparation</h3>
-                <div class="publication">
-                    <p>Hwang, Y.*, <strong>Song, G.*</strong>, Park, K., Kwon, H.†, Kim, T.† "<em>Efficient expectation value estimation for quantum circuits via extended stabilizer frameworks and adaptive variance estimation</em>" (Manuscript in preparation).</p>
-                </div>
+                <p style="margin-bottom: 20px;">Hwang, Y.*, <strong>Song, G.*</strong>, Park, K., Kwon, H.†, Kim, T.† "<em>Efficient expectation value estimation for quantum circuits via extended stabilizer frameworks and adaptive variance estimation</em>" (Manuscript in preparation).<br><span style="font-size: 0.85em; color: var(--text-muted);">*These authors contributed equally to this work. †Corresponding authors.</span></p>
 
                 <h3>Publications</h3>
-                <div class="publication">
-                    <p>Park, K., Choi, K., Kim, M., <strong>Song, G.</strong>, Kim, T.† "<em>Quantum Linear Multistep Method for Using a Quantum Oracle with Differential Equations.</em>" ArXiv preprint, 2025. <a href="https://arxiv.org/abs/2501.03781" target="_blank">ArXiv:2501.03781</a></p>
-                </div>
-                <div class="publication">
-                    <p>Kim, B.*, <strong>Song, G.*</strong>, Cho, Y.*, Min, D., Kim, M., Hwang, S.† "<em>MultiNeRF: Neural Radiance Field for Multiple Objects.</em>" KSAReD, 2021. <br>Project Page: <a href="https://giwon2004.github.io/multinerf/" target="_blank">giwon2004.github.io/multinerf/</a></p>
-                </div>
-                <p style="font-size: 0.85em; color: #666;">*These authors contributed equally to this work. †Corresponding author(s).</p>
+                <p>Park, K., Choi, K., Kim, M., <strong>Song, G.</strong>, Kim, T.† "<em>Quantum Linear Multistep Method for Using a Quantum Oracle with Differential Equations.</em>" ArXiv preprint, 2025. <a href="https://arxiv.org/abs/2501.03781" target="_blank">ArXiv:2501.03781</a><br><span style="font-size: 0.85em; color: var(--text-muted);">†Corresponding author.</span></p>
+                <p style="margin-bottom: 20px;">Kim, B.*, <strong>Song, G.*</strong>, Cho, Y.*, Min, D., Kim, M., Hwang, S.† "<em>MultiNeRF: Neural Radiance Field for Multiple Objects.</em>" KSAReD, 2021. <a href="https://giwon2004.github.io/multinerf/" target="_blank">[Project Page]</a><br><span style="font-size: 0.85em; color: var(--text-muted);">*These authors contributed equally to this work. †Corresponding author.</span></p>
 
-                <h3 style="margin-top: 20px;">Conference Presentations</h3>
-                <div class="publication">
-                    <p><strong>Presenter</strong>, "<em>Development of a Space-Efficient Quantum Circuit Simulator Optimized for Expectation Value Calculation.</em>" 2025 Quantum Information Society of Korea (QISK) Annual Conference, Busan, South Korea.</p>
-                </div>
+                <h3>Conference Presentations</h3>
+                <p><strong>Presenter</strong>, "<em>Development of a Space-Efficient Quantum Circuit Simulator Optimized for Expectation Value Calculation.</em>" 2025 Quantum Information Society of Korea (QISK) Annual Conference, Busan, South Korea.</p>
             </div>
-        </details>
 
-        <!-- Awards & Honors Section -->
-        <details>
-            <summary>Awards & Honors</summary>
-            <div class="content">
+            <!-- Awards Panel -->
+            <div id="awd" class="stage-panel">
+                <h2 class="panel-title">Awards & Honors</h2>
                 <ul>
-                    <li><strong>Academic Excellence Scholarship (Merit-based)</strong> | Seoul National University | 2023 – 2024</li>
-                    <li><strong>Special Prize (IBM Quantum)</strong> | Korea Q Hackathon | 2024</li>
-                    <li><strong>Advanced Badge (Completed all exercises)</strong> | IBM Quantum Spring Challenge | 2024 <a href="http://credly.com/badges/b2f7edca-e091-4fda-8cf8-9ea219084ba4/public-url" target="_blank">[Credential]</a></li>
-                    <li><strong>Director's Award, Quantum Information Research Support Center</strong> | Korea Q Hackathon | 2023</li>
-                    <li><strong>Silver Prize</strong> | Korea Olympiad in Informatics (KOI) | 2016</li>
+                    <li style="margin-bottom: 12px;"><strong>Academic Excellence Scholarship (Merit-based)</strong> | Seoul National University | 2023 – 2024</li>
+                    <li style="margin-bottom: 12px;"><strong>Special Prize (IBM Quantum)</strong> | Korea Q Hackathon | 2024</li>
+                    <li style="margin-bottom: 12px;"><strong>Advanced Badge (Completed all exercises)</strong> | IBM Quantum Spring Challenge | 2024 <a href="http://credly.com/badges/b2f7edca-e091-4fda-8cf8-9ea219084ba4/public-url" target="_blank">[Credential]</a></li>
+                    <li style="margin-bottom: 12px;"><strong>Director's Award, Quantum Information Research Support Center</strong> | Korea Q Hackathon | 2023</li>
+                    <li style="margin-bottom: 12px;"><strong>Silver Prize</strong> | Korea Olympiad in Informatics (KOI) | 2016</li>
                 </ul>
             </div>
-        </details>
 
-        <!-- Technical Skills Section -->
-        <details>
-            <summary>Technical Skills & Languages</summary>
-            <div class="content">
-                <div class="skill-category">
-                    <h3>Programming & Tools</h3>
-                    <p>C++, Python, Qiskit, LaTeX, Git</p>
-                </div>
-                <div class="skill-category">
-                    <h3>Research Areas</h3>
-                    <p>Quantum Algorithms, Classical Simulation, Extended Stabilizer Framework, Computational Complexity</p>
-                </div>
-                <div class="skill-category">
-                    <h3>Languages</h3>
-                    <p><strong>Korean:</strong> Native<br>
-                    <strong>English:</strong> Professional Working Proficiency (iBT TOEFL: 110/120)<br>
-                    <strong>Japanese:</strong> Professional Working Proficiency (JLPT N2: 165/180 | JLPT N1: Results Expected Aug 2026)</p>
-                </div>
+            <!-- Skills Panel -->
+            <div id="skl" class="stage-panel">
+                <h2 class="panel-title">Technical Skills & Languages</h2>
+                
+                <h3 style="margin-bottom: 8px;">Programming & Tools</h3>
+                <p style="margin-top: 0; margin-bottom: 20px;">C++, Python, Qiskit, LaTeX, Git</p>
+                
+                <h3 style="margin-bottom: 8px;">Research Areas</h3>
+                <p style="margin-top: 0; margin-bottom: 20px;">Quantum Algorithms, Classical Simulation, Extended Stabilizer Framework, Computational Complexity</p>
+                
+                <h3 style="margin-bottom: 8px;">Languages</h3>
+                <ul style="list-style-type: none; padding-left: 0;">
+                    <li><strong>Korean:</strong> Native</li>
+                    <li><strong>English:</strong> Professional Working Proficiency (iBT TOEFL: 5.5/6 (110/120))</li>
+                    <li><strong>Japanese:</strong> Professional Working Proficiency (JLPT N2: 165/180 | JLPT N1: Results Expected August 2026)</li>
+                </ul>
             </div>
-        </details>
+
+        </div>
     </main>
 
+    <script>
+        const circles = document.querySelectorAll('.circle');
+        const panels = document.querySelectorAll('.stage-panel');
+
+        circles.forEach(circle => {
+            circle.addEventListener('mouseenter', () => {
+                // Clear active states
+                circles.forEach(c => c.classList.remove('active'));
+                panels.forEach(p => p.classList.remove('active'));
+                
+                // Activate the hovered item
+                circle.classList.add('active');
+                const targetId = circle.getAttribute('data-target');
+                document.getElementById(targetId).classList.add('active');
+            });
+        });
+    </script>
 </body>
 </html>
