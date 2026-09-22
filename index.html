@@ -36,7 +36,8 @@
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             line-height: 1.6;
             color: var(--text-main);
-            max-width: 900px;
+            /* Expanded max-width to give the 7 circles enough room */
+            max-width: 1000px;
             margin: 0 auto;
             display: flex;
             flex-direction: column;
@@ -106,7 +107,8 @@
         .nav-circles {
             display: flex;
             justify-content: center;
-            gap: 20px;
+            /* Reduced gap slightly to ensure all 7 fit in one row */
+            gap: 15px;
             flex-wrap: wrap;
             margin-bottom: 25px;
             flex-shrink: 0;
@@ -318,6 +320,10 @@
                 <span class="circle-code">🔬</span>
                 <span class="circle-label">Research</span>
             </div>
+            <div class="circle" data-target="ldr">
+                <span class="circle-code">🤝</span>
+                <span class="circle-label">Leadership</span>
+            </div>
             <div class="circle" data-target="mil">
                 <span class="circle-code">🛡️</span>
                 <span class="circle-label">Military</span>
@@ -400,6 +406,21 @@
                 </ul>
             </div>
 
+            <!-- Leadership Panel -->
+            <div id="ldr" class="stage-panel">
+                <h2 class="panel-title">Leadership & Activities</h2>
+                <div class="item-header">
+                    <h3>Seoul National University</h3>
+                    <span class="date">2024</span>
+                </div>
+                <p class="subtitle">Vice President, Department of Electronic and Computer Engineering</p>
+                <ul>
+                    <li>Represented the undergraduate student body of the Department of Electronic and Computer Engineering, bridging communication between students and faculty.</li>
+                    <li>Organized departmental academic events, seminars, and networking sessions to foster a collaborative student community.</li>
+                    <li>Advocated for improvements in undergraduate research opportunities and curriculum structures.</li>
+                </ul>
+            </div>
+
             <!-- Military Panel -->
             <div id="mil" class="stage-panel">
                 <h2 class="panel-title">Military Service</h2>
@@ -417,8 +438,6 @@
             <!-- Publications Panel -->
             <div id="pub" class="stage-panel">
                 <h2 class="panel-title">Publications & Presentations</h2>
-                
-                <h3>Manuscript in Preparation</h3>
                 
                 <h3>Publications</h3>
                 <p style="margin-bottom: 20px;">Hwang, Y.*, <strong>Song, G.*</strong>, Park, K., Kwon, H.†, Kim, T.† "<em>Efficient expectation value estimation for quantum circuits via extended stabilizer frameworks and adaptive variance estimation</em>" ArXiv preprint, 2026. <a href="https://arxiv.org/abs/2609.14252" target="_blank">ArXiv:2609.14252</a><br><span style="font-size: 0.85em; color: var(--text-muted);">*These authors contributed equally to this work. †Corresponding authors.</span></p>
@@ -454,7 +473,7 @@
                 <ul style="list-style-type: none; padding-left: 0;">
                     <li><strong>Korean:</strong> Native</li>
                     <li><strong>English:</strong> Professional Working Proficiency (iBT TOEFL: 5.5/6 (110/120))</li>
-                    <li><strong>Japanese:</strong> Professional Working Proficiency (JLPT N2: 165/180 | JLPT N1: Results Expected August 2026)</li>
+                    <li><strong>Japanese:</strong> Professional Working Proficiency (JLPT N2: 165/180 | JLPT N1: 127/180)</li>
                 </ul>
             </div>
 
